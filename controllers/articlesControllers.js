@@ -37,6 +37,21 @@ async function updateThisArticle (req, res) {
     }
 }
 
+async function updateOnlyProp (req, res) {
+    try {
+        const data = await articlesModel.updateOne(
+            {
+                _id: req.params.id
+            },
+            {
+                title: req.body.title,
+            });
+            res.send(data);
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 const createArticle = async (req, res) => {
     try {
@@ -60,4 +75,4 @@ const deleteArticle = async (req, res) => {
     }
 }
 
-module.exports = {getArticles, getThisArticle, updateThisArticle, createArticle, deleteArticle}
+module.exports = {getArticles, getThisArticle, updateThisArticle, updateOnlyProp, createArticle, deleteArticle}
