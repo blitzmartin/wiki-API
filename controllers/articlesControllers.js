@@ -30,9 +30,6 @@ async function updateThisArticle (req, res) {
         {
             title: req.body.title,
             content: req.body.content
-        },
-        {
-            overwrite: true
         });
         res.send(data);
     } catch (err) {
