@@ -20,6 +20,27 @@ async function getThisArticle (req, res) {
     }
 }
 
+
+async function updateThisArticle (req, res) {
+    try {
+        const data = await articlesModel.replaceOne(
+        {
+            _id: req.params.id
+        },
+        {
+            title: req.body.title,
+            content: req.body.content
+        },
+        {
+            overwrite: true
+        });
+        res.send(data);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 const createArticle = async (req, res) => {
     try {
         const newArticle = await articlesModel.create({
@@ -42,24 +63,4 @@ const deleteArticle = async (req, res) => {
     }
 }
 
-module.exports = {getArticles, getThisArticle, createArticle, deleteArticle}
-
-
-
-
-/* async function showHomepage (req, res) {
-    try {
-        let newArticles = await articlesModel.create(
-            {
-              title: 'REST',
-              content: 'REpresentational State Transfer is a type of architecture for APIs that follow some rules.'
-            },
-            {
-                title: 'Promise',
-                content: 'A promise represents an operation that has not completed yet.'
-            }
-            )
-    } catch (err) {
-        console.log(err);
-    }
-} */
+module.exports = {getArticles, getThisArticle, updateThisArticle, createArticle, deleteArticle}
