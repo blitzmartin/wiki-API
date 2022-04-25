@@ -44,9 +44,9 @@ async function updateOnlyProp (req, res) {
                 _id: req.params.id
             },
             {
-                title: req.body.title,
+                $set: req.body,
             });
-            res.send(data);
+            res.redirect('/articles')
     } catch (err) {
         console.log(err)
     }
