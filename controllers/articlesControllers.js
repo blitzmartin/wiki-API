@@ -75,4 +75,15 @@ const deleteArticle = async (req, res) => {
     }
 }
 
-module.exports = {getArticles, getThisArticle, updateThisArticle, updateOnlyProp, createArticle, deleteArticle}
+const deleteThisArticle = async (req, res) => {
+    try {
+        const data = await articlesModel.deleteOne({
+            _id: req.params.id
+        })
+        res.redirect('/articles')
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+module.exports = {getArticles, getThisArticle, updateThisArticle, updateOnlyProp, createArticle, deleteArticle, deleteThisArticle}
